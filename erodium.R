@@ -13,6 +13,8 @@ library(MASS)
 library(ggsignif)
 library(MoMAColors)
 library(lme4)
+library(ggplot2)
+
 display.all.moma()
 
 #--Question 1
@@ -36,14 +38,19 @@ meanshade2<- mean(Shade$heightcm)
 meansun2 <- mean(Sun$heightcm)
 SEshade2 <-sd(Shade$heightcm) / sqrt(length(Shade$plantnb))
 SEsun2 <-sd(Sun$heightcm) / sqrt(length(Sun$plantnb))
+SE2 <- sd(plant$heightcm) / sqrt(length(plant$heightcm))
 #Leaflets large 
 meanshade3<- mean(Shade$leaflet)
 meansun3 <- mean(Sun$leaflet)
 SEshade3 <-sd(Shade$leaflet) / sqrt(length(Shade$plantnb))
 SEsun3 <-sd(Sun$leaflet) / sqrt(length(Sun$plantnb))
 #Ttest 
+#Height
 mytest1 <- t.test(heightcm~treatment, var.equal=FALSE, data=plant, na.rm=TRUE)
 mytest1
-#
+#Leaflet
 mytest2 <- t.test(leaflet~treatment, var.equal=FALSE, data=plant, na.rm=TRUE)
 mytest2
+#NbLeaves
+mytest3 <- t.test(nbleaves~treatment, var.equal=FALSE, data=plant, na.rm=TRUE)
+mytest3
